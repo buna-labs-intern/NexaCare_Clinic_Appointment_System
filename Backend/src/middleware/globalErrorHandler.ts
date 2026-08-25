@@ -53,10 +53,21 @@ const globalErrorHandler = (
             default:
                 message = err.message;
         }
-    } else if (err instanceof Prisma.PrismaClientValidationError) {
+    }
+
+    else if (err instanceof Prisma.PrismaClientValidationError) {
         statusCode = 400;
         message = "Database validation failed.";
-    } else if (err instanceof Error) {
+
+        errorMessages = [
+            {
+                path: "database",
+                message: err.message,
+            },
+        ];
+    }
+
+    else if (err instanceof Error) {
         message = err.message;
     }
 

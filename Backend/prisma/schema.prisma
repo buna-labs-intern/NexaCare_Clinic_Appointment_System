@@ -29,7 +29,7 @@ model Doctor {
   phone     String
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   appointments Appointment[]
 }
@@ -43,7 +43,7 @@ model Patient {
   address   String?
   notes     String?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   appointments Appointment[]
 }
@@ -56,7 +56,7 @@ model Service {
   duration    Int      @default(30)
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
 
   appointments Appointment[]
 }
@@ -70,7 +70,7 @@ model Appointment {
   notes     String?
   status    String   @default("SCHEDULED")
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   doctorId  String
   patientId String
@@ -88,5 +88,5 @@ model Notification {
   type      String   @default("system")
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
