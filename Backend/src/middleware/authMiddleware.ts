@@ -9,6 +9,9 @@ export interface AuthRequest extends Request {
     email: string;
     role: "ADMIN" | "RECEPTIONIST";
     fullName: string;
+    tenantId: string;
+    tenantName?: string;
+    tenantSlug?: string;
   };
 }
 
@@ -35,6 +38,7 @@ export const authenticate = async (
       id: string;
       email: string;
       role: "ADMIN" | "RECEPTIONIST";
+      tenantId?: string;
     };
 
     const user = await prisma.user.findUnique({
@@ -45,6 +49,15 @@ export const authenticate = async (
         fullName: true,
         role: true,
         isActive: true,
+        tenantId: true,
+        tenant: {
+          select: {
+            id: true,
+            name: true,
+            slug: true,
+            isActive: true,
+          },
+        },
       },
     });
 
@@ -56,11 +69,18 @@ export const authenticate = async (
       throw new AppError(403, "Your account has been deactivated. Please contact an administrator.");
     }
 
+    if (!user.tenant || !user.tenant.isActive) {
+      throw new AppError(403, "The clinic account is currently inactive. Please contact support.");
+    }
+
     req.user = {
       id: user.id,
       email: user.email,
       role: user.role as "ADMIN" | "RECEPTIONIST",
       fullName: user.fullName,
+      tenantId: user.tenantId,
+      tenantName: user.tenant.name,
+      tenantSlug: user.tenant.slug,
     };
 
     next();
