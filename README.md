@@ -2,8 +2,6 @@
 
 A full-stack, enterprise-grade web application built for clinics to manage doctors, patients, services, and appointment scheduling with role-based access control and strict business rule enforcement.
 
----
-
 ## 🏥 Project Overview
 
 The **Clinic Appointment Management System (NexaCare)** is designed to streamline daily clinic operations by providing structured, role-based workflows for Administrators and Receptionists:
@@ -17,8 +15,8 @@ The **Clinic Appointment Management System (NexaCare)** is designed to streamlin
 ## 👥 Team Members
 
 | Name | Role / Contribution |
-| :--- | :--- |
-| **Yasmin Kedir** | Full-Stack Development/backend/, Patient & Appointment Modules, System Integration |
+
+| **Yasmin Kedir** | Full-Stack Development, Patient & Appointment Modules, System Integration |
 | **Hiba Ahmedhussen** | Frontend Architecture, UI/UX, TypeScript Migration, Styling |
 | **Bekur Asrat** | Backend Development, Prisma Schema, Core Validation |
 | **Sosina Seifu** | Frontend Features, Schedule & Notification Management |

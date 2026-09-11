@@ -3,6 +3,8 @@ import {
   crossesLunchBreak,
   isDateTodayOrFuture,
   isSameClinicSession,
+  isTimeInFutureForDate,
+  todayKey,
 } from '@/utils/clinicHours'
 
 function toMinutes(time: string) {
@@ -79,6 +81,14 @@ export const appointmentSchema = z
         code: 'custom',
         path: ['endTime'],
         message: 'Start and end must stay in the same session (morning or afternoon)',
+      })
+    }
+
+    if (values.date === todayKey() && !isTimeInFutureForDate(values.date, values.startTime)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['startTime'],
+        message: 'Start time must be in the future when booking for today',
       })
     }
   })
