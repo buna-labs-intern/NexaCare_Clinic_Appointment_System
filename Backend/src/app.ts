@@ -3,6 +3,7 @@ import cors from "cors";
 import globalErrorHandler from "./middleware/globalErrorHandler";
 import morganMiddleware from "./middleware/morganMiddleware";
 import authRoutes from "./modules/auth/auth.routes";
+import tenantRoutes from "./modules/tenant/tenant.routes";
 import userRoutes from "./modules/user/user.routes";
 import doctorRoutes from "./modules/doctor/doctor.routes";
 import patientRoutes from "./modules/patient/patient.route";
@@ -35,6 +36,7 @@ app.get("/", (req: Request, res: Response) => {
 
 // ✅ Core API Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/tenants", tenantRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/doctors", doctorRoutes);
 app.use("/api/patients", patientRoutes);
